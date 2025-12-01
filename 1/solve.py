@@ -10,13 +10,24 @@ for line in lines:
     #print(direction, rotation)
 
     if direction == 'L':
-        cur = (cur-rotation) % 100
+        for i in range(rotation):
+            cur = (cur-1) % 100
+            if cur == 0:
+                count += 1
+                #print(direction, rotation)
+
+        
     elif direction == 'R':
-        cur = (cur+rotation) % 100
+        for i in range(rotation):
+            cur = (cur+1) % 100
+            if cur == 0:
+                count += 1
+                #print(direction, rotation)
     
     #print(cur)
-    
+    '''
     if cur == 0:
         count += 1
+    '''
 
 print(count)
