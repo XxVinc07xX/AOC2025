@@ -42,14 +42,14 @@ def check_all(nb):
             continue
         l = split_equal(string_nb, i)
         if check_l(l):
-            print(l)
+            #print(l)
             return True
         #return False
     
 #print(check_all(12))
 
 #print(split_equal('11111111', 7))
-print(check_l(split_equal('565656', 3)))
+#print(check_l(split_equal('565656', 3)))
 
 
 #===================END FUNCTIONS=======================
@@ -73,7 +73,7 @@ for r in ranges:
         if val:
             sum += i
 
-#print(sum)
+print(sum)
 
 
 #PART2
