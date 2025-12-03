@@ -39,7 +39,9 @@ print(sum)
 
 '''
 found each time the maximum in the sublist starting after current best index and endind with enough element left in case best is last element of the sublist
-Example: 111111111119111 => 111111119111; 9 cannot be the first number since there is not enough digit left to form a 12 digit number'''
+Example: 111111111119111 => 111111119111; 9 cannot be the first number since there is not enough digit left to form a 12 digit number
+After 12 iterations of 1 line, you're garanteed to have found the biggest number
+'''
 sum = 0
 for line in lines:
     line = line.removesuffix("\n")
@@ -47,7 +49,7 @@ for line in lines:
     cur_best_idx = None
     cur = ''
     
-    for _ in range(len(line)):
+    for _ in range(12):
         if cur_best_idx == None:
             sub = line[:-11]
             start_sub_idx = line.index(line[0])
@@ -64,9 +66,7 @@ for line in lines:
         cur += sub[maxi]
         found += 1
         cur_best_idx = start_sub_idx + maxi
-        if found == 12:
-            best = int(cur)
-            break
+
 
     best = int(cur)
     #print("best = " + str(best))
