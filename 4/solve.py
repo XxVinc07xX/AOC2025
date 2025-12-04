@@ -6,8 +6,6 @@ puzzle = []
 for line in lines:
     puzzle.append(line.removesuffix("\n"))
 
-#print(puzzle)
-
 ####################FUNCTIONS####################
 
 def count_adj(p, i, j):
@@ -49,7 +47,6 @@ def in_map(p, i, j):
 ###PART1
 
 count = 0
-ok = []
 for i in range(len(puzzle)):
     for j in range(len(puzzle[i])):
         if puzzle[i][j] == '@':
@@ -57,6 +54,41 @@ for i in range(len(puzzle)):
             #print(res, i, j)
             if res < 4:
                 count += 1
-                ok.append((i,j))
 
 print(count)
+
+###PART2
+
+new_puzzle = []
+for i in range(len(puzzle)):
+    s = list(puzzle[i])
+    #print(s)
+    new_puzzle.append(s)
+
+count = 0
+while True:
+    ok = []
+    for i in range(len(new_puzzle)):
+        for j in range(len(new_puzzle[i])):
+            if new_puzzle[i][j] == '@':
+                res = count_adj(new_puzzle, i, j)
+                #print(res, i, j)
+                if res < 4:
+                    count += 1
+                    ok.append((i,j))
+
+    for i in range(len(ok)):
+        new_puzzle[ok[i][0]][ok[i][1]] = '.'
+
+    #print(ok)
+    if len(ok) == 0:
+        break
+
+print(count)
+
+'''
+for i in range(len(ok)):
+    puzzle[ok[i][0]][ok[i][1]] = '.'
+'''
+
+
