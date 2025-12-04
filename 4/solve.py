@@ -86,9 +86,4 @@ while True:
 
 print(count)
 
-'''
-for i in range(len(ok)):
-    puzzle[ok[i][0]][ok[i][1]] = '.'
-'''
-
 
