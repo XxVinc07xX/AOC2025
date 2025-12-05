@@ -39,7 +39,6 @@ Idea:
    if current element is changed => start again the loop with the changed element
 3) until all element have been taken into account
 '''
-original = copy.deepcopy(fresh)
 start_nb = len(fresh)
 count = 0
 to_ignore = []
