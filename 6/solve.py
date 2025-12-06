@@ -31,3 +31,36 @@ for i in range(len(numbers[0])):
         count += math.prod(cur)
 
 print(count)
+
+###PART2 
+
+
+count = 0
+for line in lines:
+    line = line.removesuffix("\n")
+inter = []
+for i in range(len(lines[0])-1):
+    num = ''
+    for j in range(len(lines)):
+        if lines[j][i] == '+' or lines[j][i] == '*':
+            op = lines[j][i]
+        elif lines[j][i] != ' ':
+            num += lines[j][i]
+
+    if num != '':
+        inter.append(int(num))
+    else:
+        if op == "+":
+            count += sum(inter)
+        elif op == "*":
+            count += math.prod(inter)
+        inter = []
+        
+#last iteration since no more white space at the end
+if op == "+":
+    count += sum(inter)
+elif op == "*":
+    count += math.prod(inter)
+
+
+print(count)
