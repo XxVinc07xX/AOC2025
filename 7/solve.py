@@ -1,12 +1,7 @@
-import copy
 from functools import lru_cache
 
 input = open("input.txt", 'r')
 lines = input.readlines()
-
-lines_pt2 = copy.deepcopy(lines)
-
-lines_pt3 = copy.deepcopy(lines)
 
 def in_map(m, i, j):
     if i < len(m) and i >= 0 and j < len(m[0]) and j >= 0:
@@ -47,6 +42,10 @@ print(count)
 '''
 
 ##inefficient, DFN does not work for input puzzle
+
+import copy 
+lines_pt3 = copy.deepcopy(lines)
+
 for i in range(len(lines_pt3)):
     if lines_pt3[i][-1] == '\n':
         lines_pt3[i] = list(lines_pt3[i][:-1])
@@ -79,6 +78,7 @@ while (len(to_visit) != 0):
 print(len(end))
 '''
 
+#should go for DP, with memoization
 @lru_cache
 def count_path(x, y):
     if not in_map(lines, x, y):
