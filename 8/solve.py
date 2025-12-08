@@ -87,6 +87,7 @@ print(mul)
 
 ###PART2
 
+#disjoint set union
 class DSU:
     def __init__(self):
         self.parent = {}
