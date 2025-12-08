@@ -1,5 +1,4 @@
 import math
-import sys
 
 input = open("input.txt", 'r')
 lines = input.readlines()
@@ -93,11 +92,13 @@ class DSU:
         self.parent = {}
         self.size = {}
 
+    #get the root of a node
     def find(self, a):
         if self.parent[a] != a:
             self.parent[a] = self.find(self.parent[a])
         return self.parent[a]
 
+    #merge 2 disjoint sets
     def union(self, a, b):
         ra, rb = self.find(a), self.find(b)
         if ra == rb:
@@ -105,11 +106,11 @@ class DSU:
         self.parent[rb] = ra
         self.size[ra] += self.size[rb]
 
+    #initialy: a set per nodes
     def add(self, a):
         if a not in self.parent:
             self.parent[a] = a
             self.size[a] = 1
-
 
 res = all_shortest_connection(l_coord)
 pairs = list(res.keys())
@@ -118,14 +119,14 @@ dsu = DSU()
 all_nodes = set()
 
 for a, b in pairs:
-    all_nodes.add(a)
-    all_nodes.add(b)
     dsu.add(a)
     dsu.add(b)
+    all_nodes.add(a)
+    all_nodes.add(b)
 
 target = len(all_nodes)
 
-for i, (a,b) in enumerate(pairs):
+for a, b in pairs:
     dsu.union(a,b)
 
     ra = dsu.find(a)
