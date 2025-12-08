@@ -116,7 +116,7 @@ res = all_shortest_connection(l_coord)
 pairs = list(res.keys())
 
 dsu = DSU()
-all_nodes = set()
+all_nodes = set() #unique nodes only
 
 for a, b in pairs:
     dsu.add(a)
