@@ -1,4 +1,5 @@
 import math
+import sys
 
 input = open("input.txt", 'r')
 lines = input.readlines()
@@ -43,7 +44,6 @@ for line in lines:
     coord = [int(x) for x in coord]
     l_coord.append(tuple(coord))
 
-
 res = all_shortest_connection(l_coord)
 first_1000 = []
 
@@ -85,4 +85,52 @@ mul = math.prod(l_res[:3])
 print(mul)
 
 
-    
+###PART2
+
+class DSU:
+    def __init__(self):
+        self.parent = {}
+        self.size = {}
+
+    def find(self, a):
+        if self.parent[a] != a:
+            self.parent[a] = self.find(self.parent[a])
+        return self.parent[a]
+
+    def union(self, a, b):
+        ra, rb = self.find(a), self.find(b)
+        if ra == rb:
+            return
+        self.parent[rb] = ra
+        self.size[ra] += self.size[rb]
+
+    def add(self, a):
+        if a not in self.parent:
+            self.parent[a] = a
+            self.size[a] = 1
+
+
+res = all_shortest_connection(l_coord)
+pairs = list(res.keys())
+
+dsu = DSU()
+all_nodes = set()
+
+for a, b in pairs:
+    all_nodes.add(a)
+    all_nodes.add(b)
+    dsu.add(a)
+    dsu.add(b)
+
+target = len(all_nodes)
+
+for i, (a,b) in enumerate(pairs):
+    dsu.union(a,b)
+
+    ra = dsu.find(a)
+
+    size = dsu.size[ra]
+
+    if size == target:
+        print(a[0]*b[0])
+        break
