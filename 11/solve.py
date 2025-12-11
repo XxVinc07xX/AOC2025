@@ -38,9 +38,7 @@ def containing_target(path):
 to_visit = [['svr', []]]
 count = 0
 while len(to_visit) != 0:
-    print(len(to_visit))
     cur, path = to_visit.pop(0)
-    #print(cur, path)
 
     if cur == 'out' and containing_target(path):
         count += 1
