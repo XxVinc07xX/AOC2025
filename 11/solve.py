@@ -11,7 +11,6 @@ for line in lines:
 
 ###PART1 
 
-visited = []
 to_visit = ['you']
 
 count = 0
@@ -29,3 +28,28 @@ while len(to_visit) != 0:
 
 print(count)
 
+###PART2
+
+def containing_target(path):
+    if 'dac' in path and 'fft' in path:
+        return True
+    return False
+
+to_visit = [['svr', []]]
+count = 0
+while len(to_visit) != 0:
+    print(len(to_visit))
+    cur, path = to_visit.pop(0)
+    #print(cur, path)
+
+    if cur == 'out' and containing_target(path):
+        count += 1
+        continue
+
+    else:
+        if cur in d.keys():
+            val = d[cur]
+            for v in range(len(val)):
+                to_visit.insert(v,[val[v], path + [cur]])
+
+print(count)
